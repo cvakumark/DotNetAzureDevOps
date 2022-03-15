@@ -28,7 +28,6 @@ stages:
         echo Running all builds commands...
         echo ... commands successfully completed.
       displayName: 'Run build scripts & tasks'
-    - 
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerregistry'
