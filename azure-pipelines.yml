@@ -5,6 +5,7 @@ pool:
 
 stages:
 - stage: Tests
+  dependsOn: Build
   jobs:
   - job:
     displayName: Unit tests
