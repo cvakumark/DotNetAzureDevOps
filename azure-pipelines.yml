@@ -43,6 +43,18 @@ stages:
            - script: echo Running in the Dev environment as deployment job
              displayName: 'Dev based stage'
 
+- stage: Tesing
+  jobs:
+  - deployment:
+    displayName: Testing deploy
+    environment: Testing
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - script: echo Running in the Testing environment as deployment job
+             displayName: 'Testing based stage'
+
 - stage: Staging
   jobs:
   - deployment:
