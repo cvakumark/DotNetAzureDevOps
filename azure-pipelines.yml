@@ -1,15 +1,23 @@
 name: FirstPipeline
-trigger:
- branches:
-  include:
-    - main
-
+pr:
+- main
 pool:
   vmImage: ubuntu-latest
 
 # steps:
 #   - script: echo This is first pipeline
 stages:
+- stage: Build
+  displayName: Compiling the source code
+  dependsOn: [] # This will remove implicit dependency and run in parallel with the stage: Tests above 
+  jobs:
+  - job:
+    displayName: Build the application
+    steps:
+    - script: |
+        echo Running all builds commands...
+        echo ... commands successfully completed.
+      displayName: 'Run build scripts & tasks'
 - stage: Tests
   dependsOn: Build
   jobs:
@@ -23,17 +31,6 @@ stages:
     steps:
     - script:  echo simulate running your ui tests!
       displayName: 'Run unit tests'
-
-- stage: Build
-  dependsOn: [] # This will remove implicit dependency and run in parallel with the stage: Tests above 
-  jobs:
-  - job:
-    displayName: Build the application
-    steps:
-    - script: |
-        echo Running all builds commands...
-        echo ... commands successfully completed.
-      displayName: 'Run build scripts & tasks'
 
 - stage: Dev
   dependsOn:
