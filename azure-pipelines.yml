@@ -1,8 +1,8 @@
 name: First Pipeline
-pr:
-  branches:
-    include:
-      - master
+trigger:
+ branches:
+  include:
+    - master
 
 pool:
   vmImage: ubuntu-latest
